@@ -15,7 +15,7 @@ RUN echo 'deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10ge
 
 # INSTALL
 RUN apt-get update 
-RUN apt-get install -y adduser python nodejs mongodb-org python-pip
+RUN apt-get install -y adduser python nodejs mongodb-org python-pip python-dev
 
 RUN pip install ansible
 
