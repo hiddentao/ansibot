@@ -91,6 +91,15 @@ If you look inside `ansijet/src/config/base.js` you will see other
 configuration settings MongoDB, logging, etc. You may 
 override these too within the `config/production.js` you created.
 
+**Alternative: Use Docker**
+There is a Dockerfile included. Use the autobuild with:
+```docker run -p 1080:80 skornehl/ansijet```
+
+or build it yourself with
+```docker build -t <your/tag> .
+docker run -p 1080:80 <your/tag>
+```
+
 **Run Ansijet**
 
 ```bash
