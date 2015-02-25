@@ -30,7 +30,7 @@ RUN cat ~/.nvm/nvm.sh >> installnode.sh
 RUN echo "nvm install $NODE_VERSION " >> installnode.sh
 RUN sh installnode.sh
 
-ENV PATH /root/v$NODE_VERSION/bin:$PATH
+ENV PATH $NODE_PATH:$PATH
 RUN npm install -g gulp bower && npm install && bower install && npm run build
 
 CMD ./start-app.js
