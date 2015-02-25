@@ -3,8 +3,8 @@ Maintainer Sebastian Kornehl <sebastian.kornehl@asideas.de>
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV NODE_ENV production
-ENV NODE_VERSION 0.11.9
-ENV NODE_PATH /root/v$(NODE_VERSION)/bin
+ENV NODE_VERSION 0.12.0
+ENV NODE_PATH /root/.nvm/versions/node/v$(NODE_VERSION)/bin
 
 # preq
 RUN apt-get update 
@@ -22,11 +22,10 @@ RUN apt-get install -y adduser python build-essential libssl-dev mongodb-org pyt
 
 RUN pip install ansible
 
+WORKDIR /root/
 COPY . /root/
 
-WORKDIR /root/
-
-RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.16.1/install.sh | sh 
+RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.23.3/install.sh | sh 
 RUN cat ~/.nvm/nvm.sh >> installnode.sh
 RUN echo "nvm install $NODE_VERSION " >> installnode.sh
 RUN sh installnode.sh
