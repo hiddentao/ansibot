@@ -32,6 +32,9 @@ RUN echo "nvm which $NODE_VERSION " >> installnode.sh
 RUN sh installnode.sh
 
 ENV PATH /root/versions/node/v0.12.0/bin:$NODE_PATH:$PATH
-RUN npm install -g gulp bower && npm install && bower install && npm run build
+RUN npm install -g gulp bower 
+RUN npm install
+RUN bower --allow-root install 
+RUN npm run build
 
 CMD ./start-app.js
