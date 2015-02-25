@@ -18,7 +18,7 @@ RUN curl -sL https://deb.nodesource.com/setup | sudo bash -
 
 # INSTALL
 RUN apt-get update 
-RUN apt-get install -y adduser python build-essential libssl-dev mongodb-org python-pip python-dev
+RUN apt-get install -y adduser python build-essential libssl-dev mongodb-org python-pip python-dev git
 
 RUN pip install ansible
 
