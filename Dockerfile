@@ -4,7 +4,7 @@ Maintainer Sebastian Kornehl <sebastian.kornehl@asideas.de>
 ENV DEBIAN_FRONTEND noninteractive
 ENV NODE_ENV production
 ENV NODE_VERSION 0.12.0
-ENV NODE_PATH /root/.nvm/versions/node/v$NODE_VERSION/bin
+ENV NODE_PATH /root/versions/node/v$NODE_VERSION/bin
 
 # preq
 RUN apt-get update 
@@ -19,8 +19,9 @@ RUN curl -sL https://deb.nodesource.com/setup | sudo bash -
 # INSTALL
 RUN apt-get update 
 RUN apt-get install -y adduser python build-essential libssl-dev mongodb-org python-pip python-dev git
-
 RUN pip install ansible
+
+RUN mkdir /data/db
 
 WORKDIR /root/
 COPY . /root/
@@ -37,4 +38,8 @@ RUN npm install
 RUN bower --allow-root install 
 RUN npm run build
 
-CMD ./start-app.js
+# Make it work
+RUN sed -i 's/\/usr\/bin\/env node/$NODE_PATH/g' 
+
+
+CMD mongod && ./start-app.js
