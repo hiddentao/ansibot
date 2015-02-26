@@ -32,7 +32,7 @@ RUN echo "nvm install $NODE_VERSION " >> installnode.sh
 RUN echo "nvm which $NODE_VERSION " >> installnode.sh
 RUN sh installnode.sh
 
-ENV PATH l$NODE_PATH:$PATH
+ENV PATH $NODE_PATH:$PATH
 RUN npm install -g gulp bower 
 RUN npm install
 RUN bower --allow-root install 
