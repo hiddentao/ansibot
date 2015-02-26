@@ -21,7 +21,7 @@ RUN apt-get update
 RUN apt-get install -y adduser python build-essential libssl-dev mongodb-org python-pip python-dev git
 RUN pip install ansible
 
-RUN mkdir /data/db
+RUN mkdir -p /data/db
 
 WORKDIR /root/
 COPY . /root/
@@ -32,7 +32,7 @@ RUN echo "nvm install $NODE_VERSION " >> installnode.sh
 RUN echo "nvm which $NODE_VERSION " >> installnode.sh
 RUN sh installnode.sh
 
-ENV PATH /root/versions/node/v0.12.0/bin:$NODE_PATH:$PATH
+ENV PATH l$NODE_PATH:$PATH
 RUN npm install -g gulp bower 
 RUN npm install
 RUN bower --allow-root install 
