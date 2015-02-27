@@ -93,12 +93,16 @@ override these too within the `config/production.js` you created.
 
 **Alternative: Use Docker**
 There is a Dockerfile included. Use the autobuild with:
-```docker run -p 1080:3000 v /my/playbook/path:/playbooks skornehl/ansijet```
+
+```docker run -d -p 3000:3000 -v /my/playbook/path:/playbooks skornehl/ansijet```
 
 or build it yourself with
+
 ```docker build -t <your/tag> .
-docker run -p 1080:3000 -v /my/playbook/path:/playbooks <your/tag>
+docker run -d -p 3000:3000 -v /my/playbook/path:/playbooks <your/tag>
 ```
+
+Be careful about permissions when linking the playbook path. If you have problems, try --privileged=true for testing.
 
 **Run Ansijet**
 
