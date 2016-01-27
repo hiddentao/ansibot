@@ -1,0 +1,36 @@
+include ../_mixins
+
+block vars
+  - var pageTitle = 'Deployment'
+  - var selectedNav = 'deploy'
+
+extends ../layout
+
+block content
+
+  #triggers
+
+    h1 All triggers
+
+    if 0 < triggers.length
+
+      table.triggers
+        thead
+          th Description
+          th Execute 
+          th Result
+        - each trigger in triggers
+          
+          tr
+            td
+                a.btn(href="#{trigger.invokeUrlTemplate.path}?token=#{trigger.invokeUrlTemplate.queryParams.token.value}") #{trigger.description}               
+            td 
+              if trigger.playbook
+                a(href=trigger.playbook.viewUrl) #{trigger.playbook.name}
+            td 
+              
+
+            
+
+    else
+      em No triggers found
