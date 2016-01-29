@@ -1,0 +1,56 @@
+block vars
+  - var pageTitle = 'Deploy ' + trigger.description
+  - var selectedNav = 'deploy'
+
+include ../_mixins
+
+extends ../layout
+
+block content
+
+  #trigger
+
+    h1 Trigger: #{trigger.description}
+
+    .actions
+      a.btn.delete(href="?_method=DELETE", data-item-type="trigger") Delete
+
+    .info
+      .playbook
+        span.label Playbook
+        span
+          a(href=trigger.playbook.viewUrl) #{trigger.playbook.name}
+      .type
+        span.label Type
+        span #{trigger.type}
+      .url
+        span.label Request URL
+        span
+          +renderUrlTemplate(trigger.invokeUrlTemplate)
+      if !_.isEmpty(trigger.ansibleVars)
+        .ansibleVars
+          span.label Ansible variables
+          table
+            thead
+              th Name
+              th Value
+              th Description
+            - each meta, key in trigger.ansibleVars
+              tr
+                td #{key}
+                td 
+                  case meta.type
+                    when 'config'
+                      code #{meta.value}
+                    when 'query'
+                      em Obtained from request
+                    when 'generated'
+                      em Generated from request
+                td #{meta.desc}
+
+
+
+
+      h2 Recent jobs (latest #{jobs.length})
+
+      +renderJobTable(jobs)
