@@ -76,5 +76,10 @@ exports.invoke = function*() {
 
   yield thunkify(job.save).call(job);
 
-  this.body = 'ok';
+  //this.body = 'ok';
+  var logs = yield this.app.models.Log.getRecent(1000);
+
+  yield this.render('logs/index', {
+    logs: logs
+  });
 };
