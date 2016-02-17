@@ -12,7 +12,7 @@ exports.index = function*() {
   // load triggers
   var triggers = yield this.app.models.Trigger.getAll();
 
-  yield this.render('triggers/index', {
+  yield this.render('deploy/index', {
     triggers: triggers
   });
 };
@@ -76,10 +76,5 @@ exports.invoke = function*() {
 
   yield thunkify(job.save).call(job);
 
-  //this.body = 'ok';
-  var logs = yield this.app.models.Log.getRecent(1000);
-
-  yield this.render('logs/index', {
-    logs: logs
-  });
+  this.body = 'ok';
 };
